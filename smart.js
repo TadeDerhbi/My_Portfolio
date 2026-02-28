@@ -206,13 +206,32 @@ if (contactForm) {
         btn.disabled = true;
 
         // Simulate sending (replace with actual form submission)
-        setTimeout(() => {
-            btn.innerHTML = originalHTML;
-            btn.disabled = false;
-            formSuccess.classList.add('show');
-            contactForm.reset();
-            setTimeout(() => formSuccess.classList.remove('show'), 5000);
-        }, 1500);
+        fetch('https://formspree.io/f/mreavbog', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        subject: document.getElementById('subject').value,
+        message: document.getElementById('message').value
+    })
+})
+.then(response => {
+    btn.innerHTML = originalHTML;
+    btn.disabled = false;
+    if (response.ok) {
+        formSuccess.classList.add('show');
+        contactForm.reset();
+        setTimeout(() => formSuccess.classList.remove('show'), 5000);
+    } else {
+        alert('Something went wrong. Please try again.');
+    }
+})
+.catch(() => {
+    btn.innerHTML = originalHTML;
+    btn.disabled = false;
+    alert('Something went wrong. Please try again.');
+});
     });
 }
 
