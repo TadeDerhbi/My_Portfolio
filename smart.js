@@ -108,7 +108,6 @@ const skillObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('visible');
-            // Animate skill bars
             entry.target.querySelectorAll('.skill-fill').forEach(bar => {
                 const width = bar.getAttribute('data-width');
                 setTimeout(() => {
@@ -198,39 +197,39 @@ const formSuccess = document.getElementById('formSuccess');
 if (contactForm) {
     contactForm.addEventListener('submit', e => {
         e.preventDefault();
+
+        if (window.location.hostname !== 'tadederhbi.github.io') return;
+
         const btn = contactForm.querySelector('button[type="submit"]');
         const originalHTML = btn.innerHTML;
-
-        if (window.location.hostname !== 'tadederhbi.github.io/My_Portfolio/') return;
 
         // Loading state
         btn.innerHTML = '<span>Sending...</span> <i class="bx bx-loader-alt bx-spin"></i>';
         btn.disabled = true;
 
-        // Simulate sending (replace with actual form submission)
         fetch('https://formspree.io/f/mreavbog', {
-    method: 'POST',
-    headers: { 'Accept': 'application/json' },
-    body: new FormData(contactForm)
-})
-})
-.then(response => {
-    btn.innerHTML = originalHTML;
-    btn.disabled = false;
-    if (response.ok) {
-        formSuccess.classList.add('show');
-        contactForm.reset();
-        setTimeout(() => formSuccess.classList.remove('show'), 5000);
-    } else {
-        alert('Something went wrong. Please try again.');
-    }
-})
-.catch(() => {
-    btn.innerHTML = originalHTML;
-    btn.disabled = false;
-    alert('Something went wrong. Please try again.');
-});
-    };
+            method: 'POST',
+            headers: { 'Accept': 'application/json' },
+            body: new FormData(contactForm)
+        })
+        .then(response => {
+            btn.innerHTML = originalHTML;
+            btn.disabled = false;
+            if (response.ok) {
+                formSuccess.classList.add('show');
+                contactForm.reset();
+                setTimeout(() => formSuccess.classList.remove('show'), 5000);
+            } else {
+                alert('Something went wrong. Please try again.');
+            }
+        })
+        .catch(() => {
+            btn.innerHTML = originalHTML;
+            btn.disabled = false;
+            alert('Something went wrong. Please try again.');
+        });
+    });
+}
 
 
 // ---- Smooth scroll for anchor links ----
