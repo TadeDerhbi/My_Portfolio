@@ -207,11 +207,19 @@ if (contactForm) {
         btn.innerHTML = '<span>Sending...</span> <i class="bx bx-loader-alt bx-spin"></i>';
         btn.disabled = true;
 
-        fetch("https://formspree.io/f/mreavbog", {
-            method: 'POST',
-            headers: { 'Accept': 'application/json' },
-            body: new FormData(contactForm)
-        })
+        fetch('https://formspree.io/f/mreavbog', {
+    method: 'POST',
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        email: document.getElementById('email').value,
+        name: document.getElementById('name').value,
+        subject: document.getElementById('subject').value,
+        message: document.getElementById('message').value
+    })
+})
         .then(response => response.json())
 .then(data => {
     btn.innerHTML = originalHTML;
