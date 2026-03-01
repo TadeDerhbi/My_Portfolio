@@ -194,7 +194,7 @@ document.querySelectorAll('.project-card').forEach((card, i) => {
 const contactForm = document.getElementById('contactForm');
 const formSuccess = document.getElementById('formSuccess');
 
-// removed hostname matching here.
+if (window.location.hostname !== 'tadederhbi.github.io') return;
 
 if (contactForm) {
     contactForm.addEventListener('submit', e => {
@@ -220,17 +220,16 @@ if (contactForm) {
         message: document.getElementById('message').value
     })
 })
-        .then(response => response.json())
-.then(data => {
+
+.then(response => {
     btn.innerHTML = originalHTML;
     btn.disabled = false;
-    console.log('Formspree response:', data);
-    if (data.ok) {
+    if (response.ok) {
         formSuccess.classList.add('show');
         contactForm.reset();
         setTimeout(() => formSuccess.classList.remove('show'), 5000);
     } else {
-        alert(JSON.stringify(data.errors));
+        alert('Something went wrong. Please try again.');
     }
 })
         .catch(() => {
