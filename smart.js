@@ -198,8 +198,6 @@ if (contactForm) {
     contactForm.addEventListener('submit', e => {
         e.preventDefault();
 
-     //   if (window.location.hostname !== 'tadederhbi.github.io') return;
-
         const btn = contactForm.querySelector('button[type="submit"]');
         const originalHTML = btn.innerHTML;
 
