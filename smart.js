@@ -207,7 +207,7 @@ if (contactForm) {
         btn.innerHTML = '<span>Sending...</span> <i class="bx bx-loader-alt bx-spin"></i>';
         btn.disabled = true;
 
-        fetch('https://formspree.io/f/mreavbog', {
+        fetch("https://formspree.io/f/mreavbog", {
             method: 'POST',
             headers: { 'Accept': 'application/json' },
             body: new FormData(contactForm)
