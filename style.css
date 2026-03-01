@@ -68,22 +68,23 @@ a, button, input, textarea{
     border-radius: 50%;
     pointer-events: none;
     z-index: 10000;
+    top: 0;
+    left: 0;
+    transform: translate(-100px, -100px);
     transition: opacity 0.3s;
+    will-change: transform;
 }
 .cursor {
     width: 8px;
     height: 8px;
     background: var(--main-color);
-    transform: translate(-50%, -50%);
-    transition: transform 0.1s;
 }
 .cursor-follower {
     width: 32px;
     height: 32px;
     border: 1.5px solid rgba(181, 71, 110, 0.5);
-    transform: translate(-50%, -50%);
-    transition: transform 0.15s ease, width 0.3s, height 0.3s, border-color 0.3s;
 }
+
 body:has(a:hover) .cursor-follower,
 body:has(button:hover) .cursor-follower {
     width: 50px;

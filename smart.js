@@ -3,35 +3,48 @@
 // ---- Custom Cursor ----
 const cursor = document.querySelector('.cursor');
 const cursorFollower = document.querySelector('.cursor-follower');
-let mouseX = 0, mouseY = 0;
-let followerX = 0, followerY = 0;
 
-document.addEventListener('mousemove', e => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-    cursor.style.left = mouseX + 'px';
-    cursor.style.top = mouseY + 'px';
-});
+if (cursor && cursorFollower) {
+    let mouseX = 0, mouseY = 0;
+    let followerX = 0, followerY = 0;
+    let isMoving = false;
 
-function animateFollower() {
-    followerX += (mouseX - followerX) * 0.12;
-    followerY += (mouseY - followerY) * 0.12;
-    cursorFollower.style.left = followerX + 'px';
-    cursorFollower.style.top = followerY + 'px';
-    requestAnimationFrame(animateFollower);
-}
-animateFollower();
-
-// Hide cursor when leaving window
-document.addEventListener('mouseleave', () => {
+    // Start hidden
     cursor.style.opacity = '0';
     cursorFollower.style.opacity = '0';
-});
-document.addEventListener('mouseenter', () => {
-    cursor.style.opacity = '1';
-    cursorFollower.style.opacity = '1';
-});
 
+    document.addEventListener('mousemove', e => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+
+        // Show cursor on first move
+        cursor.style.opacity = '1';
+        cursorFollower.style.opacity = '1';
+
+        // Move dot instantly
+        cursor.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
+        isMoving = true;
+    });
+
+    // Smooth follower
+    function animateFollower() {
+        followerX += (mouseX - followerX) * 0.12;
+        followerY += (mouseY - followerY) * 0.12;
+        cursorFollower.style.transform = `translate(${followerX}px, ${followerY}px)`;
+        requestAnimationFrame(animateFollower);
+    }
+    animateFollower();
+
+    // Hide when leaving window
+    document.addEventListener('mouseleave', () => {
+        cursor.style.opacity = '0';
+        cursorFollower.style.opacity = '0';
+    });
+    document.addEventListener('mouseenter', () => {
+        cursor.style.opacity = '1';
+        cursorFollower.style.opacity = '1';
+    });
+}
 
 // ---- Header scroll effect ----
 const header = document.getElementById('header');
