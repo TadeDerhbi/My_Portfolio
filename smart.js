@@ -194,6 +194,8 @@ document.querySelectorAll('.project-card').forEach((card, i) => {
 const contactForm = document.getElementById('contactForm');
 const formSuccess = document.getElementById('formSuccess');
 
+// removed hostname matching here.
+
 if (contactForm) {
     contactForm.addEventListener('submit', e => {
         e.preventDefault();
