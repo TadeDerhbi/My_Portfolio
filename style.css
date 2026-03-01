@@ -44,7 +44,14 @@ body {
     overflow-x: hidden;
     cursor: none;
 }
+a, button, input, textarea{
+    cursor: none;
+}
 
+.cursor, .cursor-follower{
+    pointer-events: none;
+    will-change: transform;
+}
 /* ===================== NOISE OVERLAY ===================== */
 .noise {
     position: fixed;
