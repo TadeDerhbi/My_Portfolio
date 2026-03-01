@@ -201,6 +201,8 @@ if (contactForm) {
         const btn = contactForm.querySelector('button[type="submit"]');
         const originalHTML = btn.innerHTML;
 
+        if (window.location.hostname !== 'tadederhbi.github.io/My_Portfolio/') return;
+
         // Loading state
         btn.innerHTML = '<span>Sending...</span> <i class="bx bx-loader-alt bx-spin"></i>';
         btn.disabled = true;
