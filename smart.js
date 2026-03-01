@@ -213,12 +213,13 @@ if (contactForm) {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
     },
-    body: JSON.stringify({
-        email: document.getElementById('email').value,
-        name: document.getElementById('name').value,
-        subject: document.getElementById('subject').value,
-        message: document.getElementById('message').value
-    })
+   body: JSON.stringify({
+    email: document.getElementById('email').value,
+    name: document.getElementById('name').value,
+    subject: document.getElementById('subject').value,
+    message: document.getElementById('message').value,
+    'g-recaptcha-response': grecaptcha.getResponse()
+})
 })
 
 .then(response => {
@@ -233,10 +234,11 @@ if (contactForm) {
     }
 })
         .catch(() => {
-            btn.innerHTML = originalHTML;
-            btn.disabled = false;
-            alert('Something went wrong. Please try again.');
-        });
+    btn.innerHTML = originalHTML;
+    btn.disabled = false;
+    alert('Something went wrong. Please try again.');
+    grecaptcha.reset();
+});
     });
 }
 
