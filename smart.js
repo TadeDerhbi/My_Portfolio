@@ -212,17 +212,19 @@ if (contactForm) {
             headers: { 'Accept': 'application/json' },
             body: new FormData(contactForm)
         })
-        .then(response => {
-            btn.innerHTML = originalHTML;
-            btn.disabled = false;
-            if (response.ok) {
-                formSuccess.classList.add('show');
-                contactForm.reset();
-                setTimeout(() => formSuccess.classList.remove('show'), 5000);
-            } else {
-                alert('Something went wrong. Please try again.');
-            }
-        })
+        .then(response => response.json())
+.then(data => {
+    btn.innerHTML = originalHTML;
+    btn.disabled = false;
+    console.log('Formspree response:', data);
+    if (data.ok) {
+        formSuccess.classList.add('show');
+        contactForm.reset();
+        setTimeout(() => formSuccess.classList.remove('show'), 5000);
+    } else {
+        alert(JSON.stringify(data.errors));
+    }
+})
         .catch(() => {
             btn.innerHTML = originalHTML;
             btn.disabled = false;
