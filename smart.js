@@ -207,11 +207,11 @@ document.querySelectorAll('.project-card').forEach((card, i) => {
 const contactForm = document.getElementById('contactForm');
 const formSuccess = document.getElementById('formSuccess');
 
-if (window.location.hostname !== 'tadederhbi.github.io') return;
-
 if (contactForm) {
     contactForm.addEventListener('submit', e => {
         e.preventDefault();
+
+        if (window.location.hostname !== 'tadederhbi.github.io') return;
 
         const btn = contactForm.querySelector('button[type="submit"]');
         const originalHTML = btn.innerHTML;
