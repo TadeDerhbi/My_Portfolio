@@ -273,3 +273,52 @@ document.querySelectorAll('.section-heading, .section-sub, .about-content p, .co
     el.classList.add('fade-up');
     fadeObserver.observe(el);
 });
+
+
+// ---- Theme Toggle ----
+const themeToggle = document.getElementById('themeToggle');
+const themeIcon = themeToggle ? themeToggle.querySelector('i') : null;
+
+// Check system preference
+const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+
+// Apply saved preference or system preference on load
+function applyTheme(isDark) {
+    if (isDark) {
+        document.body.classList.remove('light-mode');
+        if (themeIcon) {
+            themeIcon.classList.remove('bx-sun');
+            themeIcon.classList.add('bx-moon');
+        }
+    } else {
+        document.body.classList.add('light-mode');
+        if (themeIcon) {
+            themeIcon.classList.remove('bx-moon');
+            themeIcon.classList.add('bx-sun');
+        }
+    }
+}
+
+// On load — check localStorage first, then system
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme) {
+    applyTheme(savedTheme === 'dark');
+} else {
+    applyTheme(systemPrefersDark.matches);
+}
+
+// Listen for system preference changes
+systemPrefersDark.addEventListener('change', e => {
+    if (!localStorage.getItem('theme')) {
+        applyTheme(e.matches);
+    }
+});
+
+// Toggle button click
+if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+        const isCurrentlyDark = !document.body.classList.contains('light-mode');
+        applyTheme(!isCurrentlyDark);
+        localStorage.setItem('theme', isCurrentlyDark ? 'light' : 'dark');
+    });
+}

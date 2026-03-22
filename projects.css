@@ -329,3 +329,45 @@
     .tab span { display: none; }
     .proj-hero-title { font-size: 5rem; }
 }
+
+
+
+/* ---- Light Mode Overrides ---- */
+body.light-mode .tabs-wrapper {
+    background: rgba(253, 246, 240, 0.92);
+}
+
+body.light-mode .tab.active {
+    color: #2a1a1f;
+    background: rgba(181, 71, 110, 0.06);
+}
+
+body.light-mode .tab:hover:not(.active) {
+    color: #2a1a1f;
+    background: rgba(181, 71, 110, 0.04);
+}
+
+body.light-mode .proj-card:hover {
+    border-color: rgba(181, 71, 110, 0.3);
+    box-shadow: 0 20px 50px rgba(181, 71, 110, 0.12);
+}
+
+body.light-mode .proj-card h3 {
+    color: #2a1a1f;
+}
+
+body.light-mode .proj-metric {
+    color: #2a1a1f;
+}
+
+body.light-mode .proj-tech span {
+    background: rgba(0, 0, 0, 0.04);
+}
+
+body.light-mode .cat-icon {
+    border-color: rgba(181, 71, 110, 0.2);
+}
+
+body.light-mode .proj-hero-title {
+    color: #2a1a1f;
+}
