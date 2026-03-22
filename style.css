@@ -236,7 +236,7 @@ section {
 
 .btn-primary {
     background: var(--main-color);
-    color: var(--bg-color);
+    color: var(--white);
     border: 1.5px solid var(--main-color);
 }
 .btn-primary::before { background: var(--main-light); }
@@ -244,7 +244,7 @@ section {
 
 .btn-outline {
     background: transparent;
-    color: var(--main-color);
+    color: var(--white);
     border: 1.5px solid var(--main-color);
 }
 .btn-outline::before { background: var(--main-color); }
