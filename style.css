@@ -1196,7 +1196,7 @@ body.light-mode .theme-toggle .bx-moon::before {
         --border-hover: rgba(181, 71, 110, 0.4);
     }
 }
-/*For lightmode toggle*/
+/*For lightmode toggle button*/
 .theme-toggle {
     background: transparent;
     border: 1px solid var(--border);
